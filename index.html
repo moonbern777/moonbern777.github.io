@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Открыто — сайты для малого бизнеса в Ижевске</title>
+<meta name="description" content="Иван Коростин, студия «Открыто»: сайты для кафе, мастеров и репетиторов Ижевска. Красиво, быстро, с заявками в Telegram. Демо вашего сайта до оплаты.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Rubik:wght@400;500;600&display=swap">
+<style>
+/* Layout: a shop window. A striped awning over the hero, the three demo sites live on phones behind the glass. */
+:root {
+  --bg: #f3f4ef;
+  --surface: #ffffff;
+  --ink: #10201a;
+  --muted: #56645d;
+  --green: #0f5b45;
+  --on-green: #ffffff;
+  --sun: #ffd23f;
+  --mark: #ffd23f;
+  --line: rgba(16, 32, 26, .14);
+  --awning-light: #ffffff;
+
+  --display: "Dela Gothic One", "Arial Black", system-ui, sans-serif;
+  --body: "Rubik", "Segoe UI", system-ui, sans-serif;
+
+  --fs-sm: .9375rem;
+  --fs-md: 1.0625rem;
+  --fs-lg: clamp(1.15rem, 1.05rem + .5vw, 1.4rem);
+  --fs-xl: clamp(1.9rem, 1.3rem + 2.6vw, 3.4rem);
+  --fs-hero: clamp(2.2rem, 1rem + 4vw, 4.2rem);
+
+  --gutter: clamp(16px, 4vw, 48px);
+  --radius: 22px;
+  --ease: cubic-bezier(.2, .8, .2, 1);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0d1512; --surface: #142019; --ink: #eef3ee; --muted: #a3b2aa;
+    --green: #5fd3a5; --on-green: #0d1512; --mark: rgba(255, 210, 63, .35); --line: rgba(238, 243, 238, .14); --awning-light: #e9efe9;
+    color-scheme: dark;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box }
+[hidden] { display: none !important }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 400 var(--fs-md)/1.6 var(--body); -webkit-font-smoothing: antialiased; overflow-x: clip }
+h1, h2, h3 { font-family: var(--display); font-weight: 400; line-height: 1.08; letter-spacing: -.01em; margin: 0; text-wrap: balance }
+p { margin: 0; text-wrap: pretty }
+a { color: inherit }
+:focus-visible { outline: 3px solid var(--green); outline-offset: 3px; border-radius: 8px }
+::selection { background: var(--sun); color: #10201a }
+
+.wrap {
+  width: 100%; max-width: 1240px; margin-inline: auto;
+  padding-left: max(var(--gutter), env(safe-area-inset-left, 0px));
+  padding-right: max(var(--gutter), env(safe-area-inset-right, 0px));
+}
+section { scroll-margin-top: 80px }
+.section { padding-block: clamp(72px, 10vw, 130px) }
+.eyebrow { font: 500 .8125rem/1.2 var(--body); text-transform: uppercase; letter-spacing: .14em; color: var(--green) }
+.lead { font-size: var(--fs-lg); line-height: 1.5; color: var(--muted); max-width: 44ch }
+.head { display: grid; gap: 16px; margin-bottom: clamp(36px, 5vw, 56px); max-width: 760px }
+.head h2 { font-size: var(--fs-xl) }
+.mark { background: linear-gradient(transparent 58%, var(--mark) 58% 92%, transparent 92%); color: inherit; padding-inline: .06em }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  padding: 17px 26px; border-radius: 999px; border: 2px solid var(--green); background: var(--green); color: var(--on-green);
+  font: 500 var(--fs-sm)/1 var(--body); text-decoration: none; cursor: pointer; transition: transform .25s var(--ease), background-color .25s, color .25s;
+}
+.btn:hover { transform: translateY(-2px) }
+.btn svg { width: 18px; height: 18px; transition: transform .25s var(--ease) }
+.btn:hover svg { transform: translateX(4px) }
+.btn-ghost { background: transparent; color: var(--ink); border-color: var(--ink) }
+
+/* Header */
+.site-header {
+  position: sticky; top: 0; z-index: 50; padding-top: env(safe-area-inset-top, 0px);
+  background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+}
+.header-in { display: flex; align-items: center; gap: 24px; padding-block: 14px }
+.logo { text-decoration: none; font: 400 1.35rem/1 var(--display); display: flex; align-items: center; gap: 10px }
+.logo i { width: 26px; height: 18px; border-radius: 4px 4px 2px 2px; background: repeating-linear-gradient(90deg, var(--green) 0 5px, var(--awning-light) 5px 10px); box-shadow: inset 0 0 0 1.5px var(--green) }
+.nav { gap: 26px; margin-left: auto }
+.nav a { text-decoration: none; font-size: var(--fs-sm) }
+.nav a:hover { color: var(--green) }
+.header-cta { padding: 12px 20px }
+.burger, .nav-close { display: none }
+@media (min-width: 961px) {
+  .nav[popover] { display: flex; position: static; inset: auto; margin: 0 0 0 auto; padding: 0; border: 0; background: none; color: inherit; overflow: visible; width: auto; height: auto }
+}
+@media (max-width: 960px) {
+  .header-cta { display: none }
+  .burger { display: grid; place-items: center; margin-left: auto; width: 46px; height: 46px; border-radius: 50%; border: 1.5px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer }
+  .burger svg { width: 20px; height: 20px }
+  .nav[popover] {
+    position: fixed; inset: 0; width: 100%; height: 100%; margin: 0; border: 0;
+    padding: calc(96px + env(safe-area-inset-top, 0px)) max(var(--gutter), env(safe-area-inset-right, 0px)) 40px max(var(--gutter), env(safe-area-inset-left, 0px));
+    background: var(--bg); color: var(--ink); flex-direction: column; gap: 10px;
+  }
+  .nav[popover]:popover-open { display: flex }
+  .nav a { font: 400 clamp(1.8rem, 8vw, 2.4rem)/1.3 var(--display); width: max-content }
+  .nav-close { display: grid; place-items: center; position: absolute; top: calc(14px + env(safe-area-inset-top, 0px)); right: max(var(--gutter), env(safe-area-inset-right, 0px)); width: 46px; height: 46px; border-radius: 50%; border: 1.5px solid var(--line); background: var(--surface); color: var(--ink); font-size: 1.5rem; cursor: pointer }
+}
+
+/* Awning */
+.awning { position: relative; height: 54px; background: repeating-linear-gradient(90deg, var(--green) 0 48px, var(--awning-light) 48px 96px); transform-origin: top }
+.awning::after {
+  content: ""; position: absolute; left: 0; right: 0; top: 100%; height: 24px;
+  background:
+    radial-gradient(circle at 24px 0, var(--green) 23.5px, transparent 24px) 0 0 / 96px 24px repeat-x,
+    radial-gradient(circle at 72px 0, var(--awning-light) 23.5px, transparent 24px) 0 0 / 96px 24px repeat-x;
+  filter: drop-shadow(0 6px 6px rgba(0, 0, 0, .12));
+}
+
+/* Hero */
+.hero { padding-block: clamp(56px, 7vw, 96px) clamp(64px, 8vw, 110px) }
+.hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 5vw, 72px); align-items: center }
+.hero-copy { display: grid; gap: 26px; min-width: 0 }
+.hero h1 { font-size: var(--fs-hero) }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px }
+.promises { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 0; padding: 0 }
+.promises li { padding: 9px 14px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); font-size: var(--fs-sm) }
+.promises li::before { content: "✓ "; color: var(--green); font-weight: 600 }
+
+.window {
+  --s: .56;
+  position: relative; border-radius: 28px; border: 10px solid var(--ink); min-width: 0;
+  background: linear-gradient(160deg, color-mix(in srgb, var(--green) 14%, var(--surface)), var(--surface));
+  height: calc(844px * var(--s) + 120px); overflow: hidden;
+}
+.window::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, .28) 38%, transparent 46%, transparent 62%, rgba(255, 255, 255, .16) 68%, transparent 74%);
+}
+.shelf { position: absolute; left: 0; right: 0; bottom: 0; height: 26px; background: var(--ink) }
+.phone {
+  position: absolute; bottom: 26px; left: 50%; display: block; padding: 7px; border-radius: 34px; background: #0b0f0d;
+  box-shadow: 0 24px 50px -20px rgba(0, 0, 0, .55); text-decoration: none;
+  transition: transform .5s var(--ease);
+  translate: -50% 0;
+}
+.phone .screen { width: calc(390px * var(--s)); height: calc(844px * var(--s)); border-radius: 27px; overflow: hidden; background: var(--bg) }
+.phone iframe { width: 390px; height: 844px; border: 0; transform: scale(var(--s)); transform-origin: 0 0; pointer-events: none; display: block }
+.phone.left { transform: translateX(-62%) rotate(-7deg) scale(.88); z-index: 1 }
+.phone.right { transform: translateX(62%) rotate(7deg) scale(.88); z-index: 1 }
+.phone.mid { z-index: 2 }
+.phone:hover { transform: translateY(-14px) }
+.phone.left:hover { transform: translateX(-66%) translateY(-14px) rotate(-7deg) scale(.88) }
+.phone.right:hover { transform: translateX(66%) translateY(-14px) rotate(7deg) scale(.88) }
+.sign { position: absolute; top: 0; left: 18px; z-index: 3; padding-top: 20px; transform-origin: 50% 0 }
+.sign::before { content: ""; position: absolute; top: 0; left: 24%; right: 24%; height: 24px; border: 2px solid var(--ink); border-bottom: 0; border-radius: 50% 50% 0 0 }
+.sign-board { display: grid; justify-items: center; gap: 3px; padding: 8px 14px 9px; border-radius: 10px; background: var(--sun); color: #10201a; border: 2px solid #10201a; box-shadow: 0 10px 20px -10px rgba(0, 0, 0, .5) }
+.sign-board b { font: 400 1.15rem/1 var(--display); text-transform: uppercase; letter-spacing: .04em }
+.sign-board small { font-size: .7rem; line-height: 1.2 }
+@media (max-width: 960px) {
+  .hero-grid { grid-template-columns: 1fr }
+}
+@media (max-width: 520px) {
+  .window { --s: .5; border-width: 8px }
+  .phone.left { transform: translateX(-74%) rotate(-7deg) scale(.82) }
+  .phone.right { transform: translateX(74%) rotate(7deg) scale(.82) }
+}
+
+/* Works */
+.works { display: grid; gap: 18px; list-style: none; margin: 0; padding: 0 }
+.work {
+  --c1: #c46a2c; --c2: #2b3bd9;
+  display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(20px, 4vw, 56px); align-items: center;
+  padding: clamp(24px, 4vw, 48px); border-radius: var(--radius); background: var(--surface); border: 1px solid var(--line);
+}
+.work-copy { display: grid; gap: 18px; min-width: 0 }
+.work .eyebrow { color: var(--c2) }
+.work h3 { font-size: clamp(1.6rem, 1.2rem + 1.6vw, 2.4rem) }
+.work ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: var(--fs-sm) }
+.work ul li { display: flex; gap: 10px }
+.work ul li::before { content: ""; flex: none; width: 8px; height: 8px; margin-top: .55em; border-radius: 50%; background: var(--c2) }
+.work-actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center }
+.palette { display: grid; gap: 14px; justify-items: start }
+.swatches { display: flex }
+.swatches span { width: clamp(56px, 7vw, 84px); aspect-ratio: 1; border-radius: 50%; border: 3px solid var(--surface); margin-left: -14px; box-shadow: 0 6px 16px -8px rgba(0, 0, 0, .4) }
+.swatches span:first-child { margin-left: 0 }
+.palette small { color: var(--muted); font-size: .8125rem }
+@media (max-width: 860px) { .work { grid-template-columns: 1fr } }
+
+/* Included */
+.included { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; list-style: none; margin: 0; padding: 0 }
+.included li { display: grid; gap: 10px; align-content: start; padding: 26px; border-radius: var(--radius); border: 1px solid var(--line) }
+.included h3 { font-size: 1.25rem }
+.included p { color: var(--muted); font-size: var(--fs-sm) }
+.included .icon { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; background: color-mix(in srgb, var(--green) 14%, transparent); color: var(--green) }
+.included .icon svg { width: 22px; height: 22px }
+@media (max-width: 960px) { .included { grid-template-columns: 1fr 1fr } }
+@media (max-width: 600px) { .included { grid-template-columns: 1fr } }
+
+/* Prices */
+.prices { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; list-style: none; margin: 0; padding: 0 }
+.price { display: flex; flex-direction: column; gap: 16px; padding: 30px; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--line); position: relative }
+.price.featured { background: var(--green); color: var(--on-green); border-color: var(--green) }
+.price.featured .muted, .price.featured li::before { color: inherit; opacity: .8 }
+.price .tag { position: absolute; top: -14px; right: 22px; padding: 6px 12px; border-radius: 999px; background: var(--sun); color: #10201a; font-size: .8125rem; font-weight: 500 }
+.price h3 { font-size: 1.4rem }
+.amount { font: 400 clamp(1.9rem, 1.5rem + 1.4vw, 2.6rem)/1 var(--display); font-variant-numeric: tabular-nums }
+.muted { color: var(--muted); font-size: var(--fs-sm) }
+.price ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; flex: 1; font-size: var(--fs-sm) }
+.price li { display: flex; gap: 10px }
+.price li::before { content: "✓"; color: var(--green); font-weight: 600 }
+.price.featured .btn { background: var(--on-green); color: var(--green); border-color: var(--on-green) }
+@media (max-width: 900px) { .prices { grid-template-columns: 1fr } }
+
+/* Steps */
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; list-style: none; margin: 0; padding: 0; counter-reset: s }
+.steps li { display: grid; gap: 10px; align-content: start; padding-top: 20px; border-top: 3px solid var(--ink); counter-increment: s }
+.steps li::before { content: counter(s); font: 400 2.4rem/1 var(--display); color: var(--green) }
+.steps h3 { font-size: 1.25rem }
+.steps p { color: var(--muted); font-size: var(--fs-sm) }
+@media (max-width: 900px) { .steps { grid-template-columns: 1fr 1fr } }
+@media (max-width: 520px) { .steps { grid-template-columns: 1fr } }
+
+/* FAQ */
+.faq-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(32px, 6vw, 88px); align-items: start }
+.faq details { border-bottom: 1px solid var(--line) }
+.faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; gap: 18px; align-items: center; padding: 22px 0; font: 500 var(--fs-lg)/1.3 var(--body) }
+.faq summary::-webkit-details-marker { display: none }
+.faq summary::after { content: "+"; flex: none; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: var(--surface); border: 1px solid var(--line); font-size: 1.3rem; transition: transform .3s var(--ease) }
+.faq details[open] summary::after { transform: rotate(45deg) }
+.faq p { padding: 0 48px 22px 0; color: var(--muted) }
+@media (max-width: 860px) { .faq-grid { grid-template-columns: 1fr } }
+
+/* Contact */
+.contact { background: var(--green); color: var(--on-green); border-radius: calc(var(--radius) + 8px); padding: clamp(32px, 6vw, 80px); display: grid; gap: 22px; justify-items: start; position: relative; overflow: hidden }
+.contact h2 { font-size: var(--fs-xl); max-width: 16ch }
+.contact p { font-size: var(--fs-lg); opacity: .85; max-width: 44ch }
+.contact .btn { background: var(--sun); color: #10201a; border-color: var(--sun); font-size: var(--fs-md); padding: 19px 30px }
+.contact::after { content: ""; position: absolute; right: -60px; bottom: -60px; width: 260px; height: 260px; border-radius: 50%; border: 40px solid color-mix(in srgb, var(--on-green) 12%, transparent) }
+
+.footer { padding-block: 40px; color: var(--muted); font-size: .875rem }
+.footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px }
+
+.actionbar { display: none }
+@media (max-width: 760px) {
+  .actionbar {
+    position: fixed; z-index: 40; left: 0; right: 0; bottom: 0; display: grid;
+    padding: 10px max(12px, env(safe-area-inset-right, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)) max(12px, env(safe-area-inset-left, 0px));
+    background: color-mix(in srgb, var(--bg) 90%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-top: 1px solid var(--line);
+  }
+  .footer { padding-bottom: calc(84px + env(safe-area-inset-bottom, 0px)) }
+}
+
+/* Motion */
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth }
+  .awning { animation: unroll .9s var(--ease) both }
+  .sign { animation: swing 3.6s ease-in-out infinite }
+  .hero-copy > * { animation: rise-in .8s var(--ease) both; animation-delay: calc(.08s * var(--i, 0) + .3s) }
+  .phone.mid { animation: up .9s .5s var(--ease) both }
+  .phone.left, .phone.right { animation: up .9s .7s var(--ease) both }
+  @supports (animation-timeline: view()) {
+    .reveal { animation: rise linear both; animation-timeline: view(); animation-range: entry 0% entry 75% }
+    .swatches span { animation: roll linear both; animation-timeline: view(); animation-range: entry 20% cover 45% }
+  }
+}
+@keyframes unroll { from { transform: scaleY(0) } }
+@keyframes swing { 0%, 100% { transform: rotate(-4deg) } 50% { transform: rotate(4deg) } }
+@keyframes rise-in { from { opacity: 0; transform: translateY(20px) } }
+@keyframes up { from { opacity: 0; translate: -50% 40% } }
+@keyframes rise { from { opacity: 0; transform: translateY(48px) } }
+@keyframes roll { from { opacity: 0; transform: translateX(-30px) rotate(-90deg) } }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-in">
+    <a class="logo" href="#top"><i></i>открыто</a>
+    <button class="burger" popovertarget="nav" aria-label="Открыть меню">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 8h16M4 16h16"/></svg>
+    </button>
+    <nav class="nav" id="nav" popover aria-label="Разделы сайта">
+      <button class="nav-close" popovertarget="nav" popovertargetaction="hide" aria-label="Закрыть меню">×</button>
+      <a href="#works">Работы</a>
+      <a href="#included">Что входит</a>
+      <a href="#prices">Цены</a>
+      <a href="#process">Как работаю</a>
+      <a href="#faq">Вопросы</a>
+    </nav>
+    <a class="btn header-cta" href="#contact">Обсудить сайт</a>
+  </div>
+</header>
+
+<main id="top">
+  <div class="awning" aria-hidden="true"></div>
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow" style="--i:0">Студия «Открыто» · Ижевск</p>
+        <h1 style="--i:1">Делаю сайты для <span class="mark">кафе, мастеров</span> и репетиторов</h1>
+        <p class="lead" style="--i:2">Меня зовут Иван Коростин. Делаю для бизнеса в Ижевске сайты, которые открываются на любом телефоне, показывают меню и цены и собирают заявки в Telegram.</p>
+        <div class="hero-actions" style="--i:3">
+          <a class="btn" href="#works">Смотреть работы
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="btn btn-ghost" href="#contact">Написать мне</a>
+        </div>
+        <ul class="promises" style="--i:4">
+          <li>Демо вашего сайта до оплаты</li>
+          <li>Запуск за 7–14 дней</li>
+          <li>Поддержка после запуска</li>
+        </ul>
+      </div>
+
+      <div class="window">
+        <div class="sign" aria-hidden="true"><span class="sign-board"><b>Открыто</b><small>нажмите на любой телефон</small></span></div>
+        <a class="phone left" href="https://moonbern777.github.io/vetrova-math/" target="_blank" rel="noopener" aria-label="Открыть сайт репетитора по математике">
+          <div class="screen"><iframe src="https://moonbern777.github.io/vetrova-math/" title="Сайт репетитора по математике" tabindex="-1" loading="eager"></iframe></div>
+        </a>
+        <a class="phone right" href="https://moonbern777.github.io/fason-barber/" target="_blank" rel="noopener" aria-label="Открыть сайт барбершопа «Фасон»">
+          <div class="screen"><iframe src="https://moonbern777.github.io/fason-barber/" title="Сайт барбершопа «Фасон»" tabindex="-1" loading="eager"></iframe></div>
+        </a>
+        <a class="phone mid" href="https://moonbern777.github.io/penka-cafe/" target="_blank" rel="noopener" aria-label="Открыть сайт кофейни «Пенка»">
+          <div class="screen"><iframe src="https://moonbern777.github.io/penka-cafe/" title="Сайт кофейни «Пенка»" tabindex="-1" loading="eager"></iframe></div>
+        </a>
+        <div class="shelf"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="works" style="padding-top:0">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Работы</p>
+        <h2>Три ниши, три характера</h2>
+        <p class="lead">Каждый сайт сделан с нуля под свою аудиторию: свои цвета, шрифты и главная фишка, ради которой клиент оставляет заявку.</p>
+      </div>
+      <ul class="works">
+        <li class="work reveal" style="--c1:#e8a855;--c2:#2b3bd9">
+          <div class="work-copy">
+            <p class="eyebrow">Кафе и пекарни</p>
+            <h3>Кофейня «Пенка»</h3>
+            <ul>
+              <li>Меню с вкладками, ценами и граммовками</li>
+              <li>Живой таймер до следующей партии круассанов</li>
+              <li>Статус «открыто сейчас» и бронь стола</li>
+              <li>Кнопки звонка и маршрута внизу экрана телефона</li>
+            </ul>
+            <div class="work-actions"><a class="btn" href="https://moonbern777.github.io/penka-cafe/" target="_blank" rel="noopener">Открыть сайт</a></div>
+          </div>
+          <div class="palette" aria-hidden="true">
+            <div class="swatches"><span style="background:#faf8f4"></span><span style="background:#1c1410"></span><span style="background:#2b3bd9"></span><span style="background:#d9952f"></span></div>
+            <small>Молочный, эспрессо, кобальт · шрифты Unbounded и Onest</small>
+          </div>
+        </li>
+        <li class="work reveal" style="--c1:#d62839;--c2:#d62839">
+          <div class="work-copy">
+            <p class="eyebrow">Репетиторы и школы</p>
+            <h3>Математика с Ириной Ветровой</h3>
+            <ul>
+              <li>Интерактивный график: парабола двигается за пальцем</li>
+              <li>Задачи из ЕГЭ с проверкой ответа и разбором</li>
+              <li>Светлая тема как тетрадь в клетку, тёмная как школьная доска</li>
+              <li>Запись на бесплатную диагностику</li>
+            </ul>
+            <div class="work-actions"><a class="btn" href="https://moonbern777.github.io/vetrova-math/" target="_blank" rel="noopener">Открыть сайт</a></div>
+          </div>
+          <div class="palette" aria-hidden="true">
+            <div class="swatches"><span style="background:#fbfcfe"></span><span style="background:#16233f"></span><span style="background:#2347c5"></span><span style="background:#d62839"></span></div>
+            <small>Тетрадь, синяя и красная ручка · шрифты Geologica и Bad Script</small>
+          </div>
+        </li>
+        <li class="work reveal" style="--c1:#c8202e;--c2:#1f3277">
+          <div class="work-copy">
+            <p class="eyebrow">Салоны и барбершопы</p>
+            <h3>Барбершоп «Фасон»</h3>
+            <ul>
+              <li>Онлайн-запись: услуга, мастер, день и свободное время</li>
+              <li>Итоговая цена считается сразу, с наценкой за топ-мастера</li>
+              <li>Клубная карта «шестая стрижка бесплатно»</li>
+              <li>Крутящийся барберский столб на первом экране</li>
+            </ul>
+            <div class="work-actions"><a class="btn" href="https://moonbern777.github.io/fason-barber/" target="_blank" rel="noopener">Открыть сайт</a></div>
+          </div>
+          <div class="palette" aria-hidden="true">
+            <div class="swatches"><span style="background:#f6f5f2"></span><span style="background:#121214"></span><span style="background:#c8202e"></span><span style="background:#1f3277"></span></div>
+            <small>Красный, белый, синий · шрифты Alumni Sans и Manrope</small>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="included" style="padding-top:0">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Что входит</p>
+        <h2>В каждом сайте</h2>
+      </div>
+      <ul class="included">
+        <li class="reveal"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg></span><h3>Сначала телефон</h3><p>Большинство клиентов заходят со смартфона, поэтому мобильную версию продумываю первой.</p></li>
+        <li class="reveal"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></span><h3>Быстрая загрузка</h3><p>Без тяжёлых конструкторов: только код, который нужен вашей странице.</p></li>
+        <li class="reveal"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 3-9 18-3-8-8-3z"/></svg></span><h3>Заявки в Telegram</h3><p>Брони, записи и вопросы с сайта приходят вам в мессенджер.</p></li>
+        <li class="reveal"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span><h3>Карты и отзывы</h3><p>Маршрут в Яндекс Картах и 2ГИС, блок с отзывами ваших клиентов.</p></li>
+        <li class="reveal"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></span><h3>Светлая и тёмная тема</h3><p>Сайт сам подстраивается под настройки телефона посетителя.</p></li>
+        <li class="reveal"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg></span><h3>Домен и хостинг</h3><p>Помогу выбрать адрес сайта и подключу всё сам.</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="prices" style="padding-top:0">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Цены</p>
+        <h2>Сколько стоит</h2>
+      </div>
+      <ul class="prices">
+        <li class="price reveal"><h3>Сайт-визитка</h3><p class="amount">от 18 000 ₽</p><p class="muted">Запуск за 7 дней</p>
+          <ul><li>Одна страница о вашем бизнесе</li><li>Меню или прайс</li><li>Контакты, карта, кнопки звонка и мессенджеров</li></ul>
+          <a class="btn btn-ghost" href="#contact">Обсудить</a></li>
+        <li class="price featured reveal"><span class="tag">чаще всего выбирают</span><h3>Сайт с записью</h3><p class="amount">от 30 000 ₽</p><p class="muted">Запуск за 10–14 дней</p>
+          <ul><li>Всё, что есть в визитке</li><li>Онлайн-запись или бронь стола</li><li>Заявки сразу в Telegram</li><li>Интерактивная фишка под вашу нишу</li></ul>
+          <a class="btn" href="#contact">Обсудить</a></li>
+        <li class="price reveal"><h3>Поддержка</h3><p class="amount">2 900 ₽<span class="muted"> / мес</span></p><p class="muted">После запуска</p>
+          <ul><li>Хостинг и продление домена</li><li>Правки цен, меню и фото</li><li>Мелкие доработки по запросу</li></ul>
+          <a class="btn btn-ghost" href="#contact">Обсудить</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="process" style="padding-top:0">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Как работаю</p>
+        <h2>Сначала демо, потом оплата</h2>
+      </div>
+      <ol class="steps">
+        <li class="reveal"><h3>Знакомство</h3><p>Созвон, переписка или встреча в Ижевске: что за бизнес, кто ваши клиенты, что должно быть на сайте.</p></li>
+        <li class="reveal"><h3>Бесплатное демо</h3><p>За три дня собираю демо вашего сайта. Если не понравится, вы ничего не платите.</p></li>
+        <li class="reveal"><h3>Запуск</h3><p>Дорабатываем детали, подключаю домен и заявки, сайт выходит в сеть.</p></li>
+        <li class="reveal"><h3>Поддержка</h3><p>Обновляю цены и меню по вашему сообщению и слежу, чтобы всё работало.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" id="faq" style="padding-top:0">
+    <div class="wrap faq-grid">
+      <div class="head">
+        <p class="eyebrow">Вопросы</p>
+        <h2>Частые вопросы</h2>
+      </div>
+      <div class="faq">
+        <details open><summary>Что мне нужно подготовить?</summary><p>Только то, что у вас уже есть: меню или прайс, адрес, фото. Тексты помогу написать сам.</p></details>
+        <details><summary>Смогу ли я менять цены?</summary><p>Да. С поддержкой проще прислать мне сообщение: обновлю в тот же день.</p></details>
+        <details><summary>Чей будет сайт?</summary><p>Ваш. Домен оформляется на вас, все файлы сайта передаю по первому запросу.</p></details>
+        <details><summary>У меня уже есть сайт. Что с ним будет?</summary><p>Сделаю новый и перенесу на него ваш адрес, чтобы клиенты ничего не потеряли.</p></details>
+        <details><summary>Вы работаете только с Ижевском?</summary><p>Живу и работаю в Ижевске, поэтому с местным бизнесом могу встретиться лично. С другими городами работаю удалённо через Telegram.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contact" style="padding-top:0">
+    <div class="wrap">
+      <div class="contact">
+        <p class="eyebrow" style="color:inherit;opacity:.8">Связаться</p>
+        <h2>Покажу демо вашего сайта бесплатно</h2>
+        <p>Напишите название бизнеса, и через три дня я пришлю ссылку на демо. Иван Коростин, Telegram <b>@moonbern</b>.</p>
+        <a class="btn" href="https://t.me/moonbern" target="_blank" rel="noopener">Написать в Telegram
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap"><span>© 2026 «Открыто» · Коростин Иван Вячеславович · Ижевск</span><span>Все работы на этой странице — демо-концепты.</span></div>
+</footer>
+
+<nav class="actionbar" aria-label="Быстрые действия">
+  <a class="btn" href="https://t.me/moonbern" target="_blank" rel="noopener">Написать в Telegram</a>
+</nav>
+
+<script>
+// Mobile menu: close after picking a section
+const nav = document.getElementById('nav');
+nav.addEventListener('click', e => { if (e.target.closest('a') && nav.matches(':popover-open')) nav.hidePopover(); });
+</script>
+</body>
+</html>
