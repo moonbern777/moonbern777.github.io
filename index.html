@@ -165,25 +165,35 @@ section { scroll-margin-top: 80px }
 }
 
 /* Works */
-.works { display: grid; gap: 18px; list-style: none; margin: 0; padding: 0 }
-.work {
-  --c1: #c46a2c; --c2: #2b3bd9;
-  display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(20px, 4vw, 56px); align-items: center;
-  padding: clamp(24px, 4vw, 48px); border-radius: var(--radius); background: var(--surface); border: 1px solid var(--line);
-}
-.work-copy { display: grid; gap: 18px; min-width: 0 }
-.work .eyebrow { color: var(--c2) }
-.work h3 { font-size: clamp(1.6rem, 1.2rem + 1.6vw, 2.4rem) }
-.work ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: var(--fs-sm) }
+.works { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; list-style: none; margin: 0; padding: 0 }
+.work { display: flex; flex-direction: column; min-width: 0; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--line); overflow: hidden; transition: transform .35s var(--ease), box-shadow .35s var(--ease) }
+.work:hover { transform: translateY(-5px); box-shadow: 0 26px 50px -30px rgba(16, 32, 26, .45) }
+.browser { position: relative; display: flex; flex-direction: column; flex: none; text-decoration: none; background: var(--ink) }
+.browser-bar { display: flex; align-items: center; gap: 6px; height: 30px; padding-inline: 14px; color: var(--bg); font-size: .75rem; white-space: nowrap; overflow: hidden }
+.browser-bar i { flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--bg); opacity: .4 }
+.browser-bar span { margin-left: 8px; opacity: .75; overflow: hidden; text-overflow: ellipsis }
+.thumb { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: color-mix(in srgb, var(--c) 14%, var(--bg)) }
+.thumb iframe { position: absolute; top: 0; left: 0; width: 1280px; height: 800px; border: 0; transform-origin: 0 0; transform: scale(.4); pointer-events: none }
+.work-copy { display: flex; flex-direction: column; gap: 14px; padding: clamp(20px, 3vw, 32px); flex: 1; min-width: 0 }
+.work .eyebrow { color: var(--c) }
+.work h3 { font-size: clamp(1.45rem, 1.15rem + 1.2vw, 2.1rem) }
+.work ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 7px; font-size: var(--fs-sm); flex: 1; align-content: start }
 .work ul li { display: flex; gap: 10px }
-.work ul li::before { content: ""; flex: none; width: 8px; height: 8px; margin-top: .55em; border-radius: 50%; background: var(--c2) }
-.work-actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center }
-.palette { display: grid; gap: 14px; justify-items: start }
+.work ul li::before { content: ""; flex: none; width: 7px; height: 7px; margin-top: .6em; border-radius: 50%; background: var(--c) }
+.work-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-top: 4px }
 .swatches { display: flex }
-.swatches span { width: clamp(56px, 7vw, 84px); aspect-ratio: 1; border-radius: 50%; border: 3px solid var(--surface); margin-left: -14px; box-shadow: 0 6px 16px -8px rgba(0, 0, 0, .4) }
+.swatches span { width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--surface); margin-left: -8px; box-shadow: 0 3px 8px -4px rgba(0, 0, 0, .4) }
 .swatches span:first-child { margin-left: 0 }
-.palette small { color: var(--muted); font-size: .8125rem }
-@media (max-width: 860px) { .work { grid-template-columns: 1fr } }
+.work .btn { padding: 13px 20px }
+.work.wide { grid-column: 1 / -1; flex-direction: row }
+.work.wide .browser { width: 58% }
+.work.wide .thumb { aspect-ratio: auto; flex: 1; min-height: 340px }
+@media (max-width: 860px) {
+  .works { grid-template-columns: minmax(0, 1fr) }
+  .work.wide { flex-direction: column }
+  .work.wide .browser { width: 100% }
+  .work.wide .thumb { aspect-ratio: 16 / 10; min-height: 0 }
+}
 
 /* Included */
 .included { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; list-style: none; margin: 0; padding: 0 }
@@ -331,59 +341,113 @@ section { scroll-margin-top: 80px }
     <div class="wrap">
       <div class="head">
         <p class="eyebrow">Работы</p>
-        <h2>Три ниши, три характера</h2>
+        <h2>Семь ниш, семь характеров</h2>
         <p class="lead">Каждый сайт сделан с нуля под свою аудиторию: свои цвета, шрифты и главная фишка, ради которой клиент оставляет заявку.</p>
       </div>
       <ul class="works">
-        <li class="work reveal" style="--c1:#e8a855;--c2:#2b3bd9">
+        <li class="work wide reveal" style="--c:#2b3bd9">
+          <a class="browser" href="https://moonbern777.github.io/penka-cafe/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+            <div class="browser-bar"><i></i><i></i><i></i><span>moonbern777.github.io/penka-cafe</span></div>
+            <div class="thumb"><iframe data-src="https://moonbern777.github.io/penka-cafe/" title="Превью: Кофейня «Пенка»" tabindex="-1" scrolling="no"></iframe></div>
+          </a>
           <div class="work-copy">
             <p class="eyebrow">Кафе и пекарни</p>
             <h3>Кофейня «Пенка»</h3>
-            <ul>
-              <li>Меню с вкладками, ценами и граммовками</li>
-              <li>Живой таймер до следующей партии круассанов</li>
-              <li>Статус «открыто сейчас» и бронь стола</li>
-              <li>Кнопки звонка и маршрута внизу экрана телефона</li>
-            </ul>
-            <div class="work-actions"><a class="btn" href="https://moonbern777.github.io/penka-cafe/" target="_blank" rel="noopener">Открыть сайт</a></div>
-          </div>
-          <div class="palette" aria-hidden="true">
-            <div class="swatches"><span style="background:#faf8f4"></span><span style="background:#1c1410"></span><span style="background:#2b3bd9"></span><span style="background:#d9952f"></span></div>
-            <small>Молочный, эспрессо, кобальт · шрифты Unbounded и Onest</small>
+            <ul><li>Меню с вкладками, ценами и граммовками</li><li>Живой таймер до следующей партии круассанов</li><li>Статус «открыто сейчас» и бронь стола</li><li>Кнопки звонка и маршрута внизу экрана телефона</li></ul>
+            <div class="work-foot">
+              <div class="swatches" aria-hidden="true"><span style="background:#faf8f4"></span><span style="background:#1c1410"></span><span style="background:#2b3bd9"></span><span style="background:#d9952f"></span></div>
+              <a class="btn" href="https://moonbern777.github.io/penka-cafe/" target="_blank" rel="noopener">Открыть сайт</a>
+            </div>
           </div>
         </li>
-        <li class="work reveal" style="--c1:#d62839;--c2:#d62839">
+        <li class="work reveal" style="--c:#d81e5b">
+          <a class="browser" href="https://moonbern777.github.io/sloi-cakes/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+            <div class="browser-bar"><i></i><i></i><i></i><span>moonbern777.github.io/sloi-cakes</span></div>
+            <div class="thumb"><iframe data-src="https://moonbern777.github.io/sloi-cakes/" title="Превью: Торты «Слои»" tabindex="-1" scrolling="no"></iframe></div>
+          </a>
           <div class="work-copy">
-            <p class="eyebrow">Репетиторы и школы</p>
-            <h3>Математика с Ириной Ветровой</h3>
-            <ul>
-              <li>Интерактивный график: парабола двигается за пальцем</li>
-              <li>Задачи из ЕГЭ с проверкой ответа и разбором</li>
-              <li>Светлая тема как тетрадь в клетку, тёмная как школьная доска</li>
-              <li>Запись на бесплатную диагностику</li>
-            </ul>
-            <div class="work-actions"><a class="btn" href="https://moonbern777.github.io/vetrova-math/" target="_blank" rel="noopener">Открыть сайт</a></div>
-          </div>
-          <div class="palette" aria-hidden="true">
-            <div class="swatches"><span style="background:#fbfcfe"></span><span style="background:#16233f"></span><span style="background:#2347c5"></span><span style="background:#d62839"></span></div>
-            <small>Тетрадь, синяя и красная ручка · шрифты Geologica и Bad Script</small>
+            <p class="eyebrow">Кондитеры</p>
+            <h3>Торты «Слои»</h3>
+            <ul><li>Конструктор: торт рисуется в разрезе на лету</li><li>Вкус, ярусы, оформление и надпись на топпере</li><li>Вес и цена считаются сразу</li><li>Торт разлетается на слои при прокрутке</li></ul>
+            <div class="work-foot">
+              <div class="swatches" aria-hidden="true"><span style="background:#fff0f3"></span><span style="background:#4a0e1f"></span><span style="background:#d81e5b"></span><span style="background:#557f3d"></span></div>
+              <a class="btn" href="https://moonbern777.github.io/sloi-cakes/" target="_blank" rel="noopener">Открыть сайт</a>
+            </div>
           </div>
         </li>
-        <li class="work reveal" style="--c1:#c8202e;--c2:#1f3277">
+        <li class="work reveal" style="--c:#e8490f">
+          <a class="browser" href="https://moonbern777.github.io/garage-18/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+            <div class="browser-bar"><i></i><i></i><i></i><span>moonbern777.github.io/garage-18</span></div>
+            <div class="thumb"><iframe data-src="https://moonbern777.github.io/garage-18/" title="Превью: Автосервис «Гараж 18»" tabindex="-1" scrolling="no"></iframe></div>
+          </a>
+          <div class="work-copy">
+            <p class="eyebrow">Автосервисы</p>
+            <h3>Автосервис «Гараж 18»</h3>
+            <ul><li>Чертёж машины с кликабельными узлами</li><li>Заказ-наряд собирается на глазах</li><li>Подбор работ по симптомам: «стучит», «скрипит»</li><li>Понятная таблица цен на ТО</li></ul>
+            <div class="work-foot">
+              <div class="swatches" aria-hidden="true"><span style="background:#ecece7"></span><span style="background:#15181b"></span><span style="background:#ff5a1f"></span><span style="background:#ffc400"></span></div>
+              <a class="btn" href="https://moonbern777.github.io/garage-18/" target="_blank" rel="noopener">Открыть сайт</a>
+            </div>
+          </div>
+        </li>
+        <li class="work reveal" style="--c:#0a9c94">
+          <a class="browser" href="https://moonbern777.github.io/chisto-clean/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+            <div class="browser-bar"><i></i><i></i><i></i><span>moonbern777.github.io/chisto-clean</span></div>
+            <div class="thumb"><iframe data-src="https://moonbern777.github.io/chisto-clean/" title="Превью: Клининг «Чисто»" tabindex="-1" scrolling="no"></iframe></div>
+          </a>
+          <div class="work-copy">
+            <p class="eyebrow">Клининг</p>
+            <h3>Клининг «Чисто»</h3>
+            <ul><li>Пыльное окно: протрите пальцем и получите скидку</li><li>Калькулятор точной цены с допами</li><li>Чек-лист меняется под тип уборки</li><li>Заказ с адресом и временем в одном окне</li></ul>
+            <div class="work-foot">
+              <div class="swatches" aria-hidden="true"><span style="background:#f6faf7"></span><span style="background:#0e2a2b"></span><span style="background:#e7f23c"></span><span style="background:#0a7a74"></span></div>
+              <a class="btn" href="https://moonbern777.github.io/chisto-clean/" target="_blank" rel="noopener">Открыть сайт</a>
+            </div>
+          </div>
+        </li>
+        <li class="work reveal" style="--c:#8a66e0">
+          <a class="browser" href="https://moonbern777.github.io/vdoh-yoga/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+            <div class="browser-bar"><i></i><i></i><i></i><span>moonbern777.github.io/vdoh-yoga</span></div>
+            <div class="thumb"><iframe data-src="https://moonbern777.github.io/vdoh-yoga/" title="Превью: Йога-студия «Вдох»" tabindex="-1" scrolling="no"></iframe></div>
+          </a>
+          <div class="work-copy">
+            <p class="eyebrow">Йога и фитнес</p>
+            <h3>Йога-студия «Вдох»</h3>
+            <ul><li>Солнце дышит вместе с гостем, а ночью становится луной</li><li>Режим «Подышать минуту» на весь экран</li><li>Расписание с фильтрами и записью в один клик</li><li>Подбор самого выгодного абонемента</li></ul>
+            <div class="work-foot">
+              <div class="swatches" aria-hidden="true"><span style="background:#f7f4fb"></span><span style="background:#241a3b"></span><span style="background:#f5a524"></span><span style="background:#4b2fa3"></span></div>
+              <a class="btn" href="https://moonbern777.github.io/vdoh-yoga/" target="_blank" rel="noopener">Открыть сайт</a>
+            </div>
+          </div>
+        </li>
+        <li class="work reveal" style="--c:#c8202e">
+          <a class="browser" href="https://moonbern777.github.io/fason-barber/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+            <div class="browser-bar"><i></i><i></i><i></i><span>moonbern777.github.io/fason-barber</span></div>
+            <div class="thumb"><iframe data-src="https://moonbern777.github.io/fason-barber/" title="Превью: Барбершоп «Фасон»" tabindex="-1" scrolling="no"></iframe></div>
+          </a>
           <div class="work-copy">
             <p class="eyebrow">Салоны и барбершопы</p>
             <h3>Барбершоп «Фасон»</h3>
-            <ul>
-              <li>Онлайн-запись: услуга, мастер, день и свободное время</li>
-              <li>Итоговая цена считается сразу, с наценкой за топ-мастера</li>
-              <li>Клубная карта «шестая стрижка бесплатно»</li>
-              <li>Крутящийся барберский столб на первом экране</li>
-            </ul>
-            <div class="work-actions"><a class="btn" href="https://moonbern777.github.io/fason-barber/" target="_blank" rel="noopener">Открыть сайт</a></div>
+            <ul><li>Онлайн-запись: услуга, мастер, день и время</li><li>Итог считается сразу, с наценкой за топ-мастера</li><li>Клубная карта «шестая стрижка бесплатно»</li><li>Крутящийся барберский столб на первом экране</li></ul>
+            <div class="work-foot">
+              <div class="swatches" aria-hidden="true"><span style="background:#f6f5f2"></span><span style="background:#121214"></span><span style="background:#c8202e"></span><span style="background:#1f3277"></span></div>
+              <a class="btn" href="https://moonbern777.github.io/fason-barber/" target="_blank" rel="noopener">Открыть сайт</a>
+            </div>
           </div>
-          <div class="palette" aria-hidden="true">
-            <div class="swatches"><span style="background:#f6f5f2"></span><span style="background:#121214"></span><span style="background:#c8202e"></span><span style="background:#1f3277"></span></div>
-            <small>Красный, белый, синий · шрифты Alumni Sans и Manrope</small>
+        </li>
+        <li class="work reveal" style="--c:#d62839">
+          <a class="browser" href="https://moonbern777.github.io/vetrova-math/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+            <div class="browser-bar"><i></i><i></i><i></i><span>moonbern777.github.io/vetrova-math</span></div>
+            <div class="thumb"><iframe data-src="https://moonbern777.github.io/vetrova-math/" title="Превью: Математика с Ириной Ветровой" tabindex="-1" scrolling="no"></iframe></div>
+          </a>
+          <div class="work-copy">
+            <p class="eyebrow">Репетиторы и школы</p>
+            <h3>Математика с Ириной Ветровой</h3>
+            <ul><li>Интерактивный график: парабола двигается за пальцем</li><li>Задачи из ЕГЭ с проверкой и разбором</li><li>Светлая тема как тетрадь, тёмная как школьная доска</li><li>Запись на бесплатную диагностику</li></ul>
+            <div class="work-foot">
+              <div class="swatches" aria-hidden="true"><span style="background:#fbfcfe"></span><span style="background:#16233f"></span><span style="background:#2347c5"></span><span style="background:#d62839"></span></div>
+              <a class="btn" href="https://moonbern777.github.io/vetrova-math/" target="_blank" rel="noopener">Открыть сайт</a>
+            </div>
           </div>
         </li>
       </ul>
@@ -417,7 +481,7 @@ section { scroll-margin-top: 80px }
         <li class="price reveal"><h3>Сайт-визитка</h3><p class="amount">от 18 000 ₽</p><p class="muted">Запуск за 7 дней</p>
           <ul><li>Одна страница о вашем бизнесе</li><li>Меню или прайс</li><li>Контакты, карта, кнопки звонка и мессенджеров</li></ul>
           <a class="btn btn-ghost" href="#contact">Обсудить</a></li>
-        <li class="price featured reveal"><span class="tag">чаще всего выбирают</span><h3>Сайт с записью</h3><p class="amount">от 30 000 ₽</p><p class="muted">Запуск за 10–14 дней</p>
+        <li class="price featured reveal"><span class="tag">рекомендую</span><h3>Сайт с записью</h3><p class="amount">от 30 000 ₽</p><p class="muted">Запуск за 10–14 дней</p>
           <ul><li>Всё, что есть в визитке</li><li>Онлайн-запись или бронь стола</li><li>Заявки сразу в Telegram</li><li>Интерактивная фишка под вашу нишу</li></ul>
           <a class="btn" href="#contact">Обсудить</a></li>
         <li class="price reveal"><h3>Поддержка</h3><p class="amount">2 900 ₽<span class="muted"> / мес</span></p><p class="muted">После запуска</p>
@@ -483,6 +547,23 @@ section { scroll-margin-top: 80px }
 // Mobile menu: close after picking a section
 const nav = document.getElementById('nav');
 nav.addEventListener('click', e => { if (e.target.closest('a') && nav.matches(':popover-open')) nav.hidePopover(); });
+
+// Live previews: render each demo at desktop width and scale it down to its card
+const fit = box => {
+  const scale = box.clientWidth / 1280, frame = box.querySelector('iframe');
+  frame.style.transform = `scale(${scale})`;
+  frame.style.height = `${box.clientHeight / scale}px`;
+};
+const thumbs = new ResizeObserver(entries => entries.forEach(e => fit(e.target)));
+document.querySelectorAll('.thumb').forEach(box => thumbs.observe(box));
+
+// Load a demo only when its card is about to appear, seven pages at once are too heavy for a phone
+const loader = new IntersectionObserver(entries => entries.forEach(e => {
+  if (!e.isIntersecting) return;
+  e.target.src = e.target.dataset.src;
+  loader.unobserve(e.target);
+}), { rootMargin: '300px' });
+document.querySelectorAll('.thumb iframe').forEach(frame => loader.observe(frame));
 </script>
 </body>
 </html>
