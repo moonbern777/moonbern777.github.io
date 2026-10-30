@@ -24,6 +24,7 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"ProfessionalService","name":"Студия «Открыто»","description":"Сайты для малого бизнеса: кафе, салоны, автосервисы, мастера и репетиторы.","url":"https://moonbern777.github.io/","image":"https://moonbern777.github.io/og.jpg","founder":{"@type":"Person","name":"Иван Коростин"},"address":{"@type":"PostalAddress","addressLocality":"Ижевск","addressCountry":"RU"},"areaServed":"Ижевск","priceRange":"от 18 000 ₽","sameAs":["https://t.me/moonbern"]}
 </script>
+<link rel="preload" as="image" href="img/penka-cafe-phone.webp" type="image/webp" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Rubik:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
@@ -391,7 +392,7 @@ section { scroll-margin-top: 80px }
           <div class="screen"><img src="img/fason-barber-phone.webp" alt="" width="390" height="844" decoding="async"><iframe data-live="https://moonbern777.github.io/fason-barber/" title="Сайт барбершопа «Фасон»" tabindex="-1"></iframe></div>
         </a>
         <a class="phone mid" href="https://moonbern777.github.io/penka-cafe/" target="_blank" rel="noopener" aria-label="Открыть сайт кофейни «Пенка»">
-          <div class="screen"><img src="img/penka-cafe-phone.webp" alt="" width="390" height="844" decoding="async"><iframe data-live="https://moonbern777.github.io/penka-cafe/" title="Сайт кофейни «Пенка»" tabindex="-1"></iframe></div>
+          <div class="screen"><img src="img/penka-cafe-phone.webp" alt="" width="390" height="844" fetchpriority="high"><iframe data-live="https://moonbern777.github.io/penka-cafe/" title="Сайт кофейни «Пенка»" tabindex="-1"></iframe></div>
         </a>
         <div class="shelf"></div>
       </div>
@@ -664,7 +665,7 @@ const wide = matchMedia('(min-width: 961px) and (hover: hover)').matches;
 const motion = !matchMedia('(prefers-reduced-motion: reduce)').matches;
 const live = frame => {
   if (frame.src) return;
-  frame.onload = () => frame.classList.add('ready');
+  frame.onload = () => setTimeout(() => frame.getAttribute('src') && frame.classList.add('ready'), 1600);  // the demo's own intro plays under the screenshot
   frame.src = frame.dataset.live;
 };
 const rest = frame => { frame.classList.remove('ready'); frame.onload = null; frame.removeAttribute('src'); };
